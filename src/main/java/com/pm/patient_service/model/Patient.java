@@ -7,19 +7,19 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
+@Entity //Indicates that this class is a JPA entity - maps to a database table
 public class Patient {
     //Attributes
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id //Indicates the primary key of the entity
+    @GeneratedValue(strategy = GenerationType.AUTO) //Specifies the generation strategy for the primary key - UUID generation - Strategy.AUTO lets the JPA provider choose the strategy
     private UUID id;
 
     @NotNull
     private String name;
 
     @NotNull
-    @Email
-    @Column(unique = true)
+    @Email //Validates that the string is a well-formed email address
+    @Column(unique = true) //Ensures that the email column has unique values in the database
     private String email;
 
     @NotNull
