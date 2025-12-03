@@ -19,7 +19,7 @@ public class PatientServiceApplication {
         java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
         return String.format("Hello — My Friend Spring Boot service. Server time: %s", now.format(fmt));
     }
-
+    
 }
 
 
