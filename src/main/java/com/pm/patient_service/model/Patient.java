@@ -17,6 +17,7 @@ public class Patient {
     @NotNull
     private String name;
 
+
     @NotNull
     @Email //Validates that the string is a well-formed email address
     @Column(unique = true) //Ensures that the email column has unique values in the database
