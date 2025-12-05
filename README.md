@@ -11,7 +11,7 @@ Estructura principal
 - src/main/resources: recursos (configuración, datos iniciales `data.sql`, templates, static).
 
 Requisitos
-- JDK 17+ instalado (ajusta según el `pom.xml`).
+- JDK 21+ instalado (según la propiedad `java.version` en `pom.xml`).
 - Maven (puedes usar el wrapper incluido `./mvnw`).
 
 Cómo ejecutar (modo desarrollo)
@@ -106,4 +106,3 @@ Contacto / Autor
 
 Licencia
 - A definir (añade una licencia si quieres compartir este código públicamente).
-
