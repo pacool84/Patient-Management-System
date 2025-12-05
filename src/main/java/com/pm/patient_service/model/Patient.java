@@ -12,7 +12,7 @@ public class Patient {
     //Attributes
     @Id //Indicates the primary key of the entity
     @GeneratedValue(strategy = GenerationType.AUTO) //Specifies the generation strategy for the primary key - UUID generation - Strategy.AUTO lets the JPA provider choose the strategy
-    private UUID id;
+    private UUID id; //UUID type for unique identifier - attribute that will be passed to the repository layer
 
     @NotNull
     private String name;
