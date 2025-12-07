@@ -22,7 +22,7 @@ public class PatientService {
 
     //Get all patients method
     public List<PatientResponseDTO> getPatients() {
-        List<Patient> patients = patientRepository.findAll();
+        List<Patient> patients = patientRepository.findAll(); //Fetch all patients from the database
 
         return patients.stream()
                 .map(PatientMapper::toDTO).toList();

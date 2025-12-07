@@ -17,10 +17,10 @@ public class PatientRequestDTO {
     @NotBlank(message = "Address is mandatory")
     private String address;
 
-    @NotBlank(message = "Date of Birth is mandatory")
+    @NotBlank(message = "Date of Birth is mandatory yyyy-mm-dd")
     private String dateOfBirth;
 
-    @NotBlank(message = "Registered Date is mandatory")
+    @NotBlank(message = "Registered Date is mandatory yyyy-mm-dd")
     private String registeredDate;
 
     //Getters and Setters
