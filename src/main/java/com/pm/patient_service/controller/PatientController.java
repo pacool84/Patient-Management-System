@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
@@ -25,6 +26,13 @@ public class PatientController {
     public ResponseEntity<List<PatientResponseDTO>> getPatients() {
         List<PatientResponseDTO> patients = patientService.getPatients();
         return ResponseEntity.ok().body(patients);
+    }
+
+    //Endpoint to get a patient by id
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientResponseDTO> getPatientById(@PathVariable UUID id) {
+        PatientResponseDTO patient = patientService.getPatientById(id);
+        return ResponseEntity.ok().body(patient);
     }
 
     //Endpoint to create a new patient
