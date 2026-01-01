@@ -43,4 +43,12 @@ public class PatientController {
         //return ResponseEntity.status(201).body(patientResponseDTO);
 
     }
+
+    //Endpoint to update a patient
+    //localhost:8080/patients/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientResponseDTO> updatePatient(@PathVariable UUID id, @RequestBody PatientRequestDTO patientRequestDTO) {
+        PatientResponseDTO patientResponseDTO = patientService.updatePatient(id, patientRequestDTO);
+        return ResponseEntity.ok().body(patientResponseDTO);
+    }
 }

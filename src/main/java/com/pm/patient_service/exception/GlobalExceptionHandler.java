@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class); //Logger for logging exception details
 
     @ExceptionHandler(MethodArgumentNotValidException.class) //Handles validation errors
-    public ResponseEntity<Map<String, String>> HandleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Map<String, String>> HandleValidationException(MethodArgumentNotValidException ex)  {
         //Extracting field errors and mapping them to a more readable format
         Map<String, String> errors = new HashMap<>();
 
@@ -29,13 +29,24 @@ public class GlobalExceptionHandler {
 
     }
 
+    // Handle EmailAlreadyExistsException
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
-        log.warn("Email address already exists: {} ", ex.getMessage());
+        log.warn("Email address already exists: {} ", ex.getMessage()); //This is optional logging
+
         Map<String, String> errors = new HashMap<>();
         errors.put("message", "Email address already exists");
         return ResponseEntity.badRequest().body(errors);
     }
 
+    //Handle PatientNotFoundException
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException ex) {
+        log.warn("Patient not found: {} ", ex.getMessage()); //This is optional logging
 
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
+        return ResponseEntity.badRequest().body(errors);
+
+    }
 }
