@@ -81,4 +81,13 @@ public class PatientService {
 
 
     }
+
+    //Delete a patient method
+    public void deletePatient(UUID id) {
+        //Check a patient by id exists
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + id)); //If not found, throw exception
+        patientRepository.delete(patient);
+
+    }
 }
