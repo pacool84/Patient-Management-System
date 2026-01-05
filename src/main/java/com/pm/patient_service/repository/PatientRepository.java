@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, UUID> {
     boolean existsByEmail(String email); //Expose a method to our Service layer to check if an email already exists
+    boolean existsByEmailAndIdNot(String email, UUID id); //Expose a method to check if an email exists for another patient when updating, va a ignorar dentro de su busqueda el email del paciente que estamos actualizando
 }
