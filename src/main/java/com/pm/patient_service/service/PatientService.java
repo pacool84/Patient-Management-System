@@ -80,7 +80,7 @@ public class PatientService {
         return PatientMapper.toDTO(updatedPatient);
 
 
-    }
+}
 
     //Delete a patient method
     public void deletePatient(UUID id) {
