@@ -90,4 +90,12 @@ public class PatientService {
         patientRepository.delete(patient);
 
     }
+
+
+    //Another approach for delete a patient
+    /*
+     public void deletePatient(UUID id) {
+    patientRepository.deleteById(id);
+  }
+     */
 }
