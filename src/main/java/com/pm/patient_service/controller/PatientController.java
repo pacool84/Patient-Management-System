@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
-@Tag(name = "Patient Management", description = "APIs for managing patients") // Swagger tag to group endpoints and provide description
+@Tag(name = "Patient Management", description = "APIs for managing patients") // Swagger tag to group endpoints and provide description http://localhost:4000/v3/api-docs
 public class PatientController {
     //Dependency Injection
     private final PatientService patientService;
