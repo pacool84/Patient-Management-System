@@ -12,35 +12,41 @@ Estructura principal
 
 Requisitos
 - JDK 21+ instalado (según la propiedad `java.version` en `pom.xml`).
-- Maven (puedes usar el wrapper incluido `./mvnw`).
+- Maven (puedes usar el wrapper incluido `./patient-service/mvnw` desde la raíz, o `./mvnw` si estás dentro de `patient-service`).
 
 Cómo ejecutar (modo desarrollo)
 
 1) Construir y ejecutar con el wrapper de Maven:
 
 ```bash
-# en macOS / Linux
-./mvnw clean package
-./mvnw spring-boot:run
+# en macOS / Linux (desde la raíz del repo)
+./patient-service/mvnw clean package
+./patient-service/mvnw spring-boot:run
 ```
 
 2) Ejecutar el jar generado:
 
 ```bash
-./mvnw clean package
-java -jar target/*.jar
+./patient-service/mvnw clean package
+java -jar patient-service/target/*.jar
 ```
 
 3) Ejecutar con logging de debug (muestra el "condition evaluation report"):
 
 ```bash
-./mvnw spring-boot:run -Dspring-boot.run.arguments=--debug
+./patient-service/mvnw spring-boot:run -Dspring-boot.run.arguments=--debug
 ```
 
 Comandos de tests
 
 ```bash
-./mvnw test
+./patient-service/mvnw test
+```
+
+Docker (desde la raíz del repo)
+
+```bash
+docker build -t patient-service ./patient-service
 ```
 
 Configuración recomendada de H2 (ejemplo)
