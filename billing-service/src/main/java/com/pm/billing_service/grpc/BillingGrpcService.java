@@ -7,23 +7,25 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@GrpcService // Marks this class as a gRPC service
+// Exposes BillingService RPCs via Spring Boot gRPC server integration.
+@GrpcService
 public class BillingGrpcService extends BillingServiceGrpc.BillingServiceImplBase {
     private static final Logger log = LoggerFactory.getLogger(BillingGrpcService.class);
 
     @Override
     public void createBillingAccount(billing.BillingRequest billingRequest, StreamObserver<billing.BillingResponse> responseObserver) {
+      // Log the incoming request for traceability.
       log.info("createBillingAccount request received: {}", billingRequest.toString());
 
-      //Business logic, save to DB, perform calculations, etc.
+      // TODO: implement business logic (persist account, validate patient, set status, etc.).
 
-        // Create a billing response object
+        // Build the response returned to the client.
         BillingResponse response = BillingResponse.newBuilder()
                 .setAccountId("2309825928") // Replace with actual generated ID
                 .setStatus("ACTIVE")
                 .build();
 
-        // Send the response back to the client
+        // Complete the unary RPC with a single response message.
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
