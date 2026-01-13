@@ -1,19 +1,30 @@
+// proto3 defines the syntax version for the Protobuf compiler and runtime.
 syntax = "proto3";
 
+// Java code generation options for this .proto.
 option java_multiple_files = true;
 option java_package = "billing";
 
+// Service definition: declares the RPCs exposed by BillingService.
 service BillingService {
+  // Creates a billing account for a patient and returns the result.
   rpc CreateBillingAccount (BillingRequest) returns (BillingResponse);
 }
 
+// Request message: input fields required to create a billing account.
 message BillingRequest {
+  // Patient identifier in the patient-service.
   string patientId = 1;
+  // Patient name for the billing record.
   string name = 2;
+  // Patient email to associate with the billing account.
   string email = 3;
 }
 
+// Response message: output fields after attempting account creation.
 message BillingResponse {
+  // Newly created billing account identifier.
   string accountId = 1;
+  // Operation status (e.g., "CREATED", "FAILED").
   string status = 2;
 }
