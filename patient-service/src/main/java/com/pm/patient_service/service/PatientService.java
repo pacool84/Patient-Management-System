@@ -1,9 +1,11 @@
 package com.pm.patient_service.service;
 
+import billing.BillingServiceGrpc;
 import com.pm.patient_service.dto.PatientRequestDTO;
 import com.pm.patient_service.dto.PatientResponseDTO;
 import com.pm.patient_service.exception.EmailAlreadyExistsException;
 import com.pm.patient_service.exception.PatientNotFoundException;
+import com.pm.patient_service.grpc.BillingServiceGrpcClient;
 import com.pm.patient_service.mapper.PatientMapper;
 import com.pm.patient_service.model.Patient;
 import com.pm.patient_service.repository.PatientRepository;
@@ -19,11 +21,13 @@ import java.util.UUID;
 public class PatientService {
 
     //Pattern DEPENDENCY INJECTION - injecting the repository into the service
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
 
     //Constructor but still part of Dependency Injection
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient) {
         this.patientRepository = patientRepository;
+        this.billingServiceGrpcClient = billingServiceGrpcClient;
     }
 
     //Get all patients method
@@ -48,6 +52,13 @@ public class PatientService {
         }
 
         Patient newpatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+
+        // Call Billing Service via gRPC to create a billing account for the new patient
+        billingServiceGrpcClient.createBillingAccount(
+                newpatient.getId().toString(),
+                newpatient.getName(),
+                newpatient.getEmail()
+        );
         return PatientMapper.toDTO(newpatient);
     }
 
